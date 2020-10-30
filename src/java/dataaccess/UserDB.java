@@ -104,6 +104,11 @@ public class UserDB {
         
     }
     
+    public void insert(User user) throws Exception {
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection con = cp.getConnection();
+        
+    }
     
     
     
