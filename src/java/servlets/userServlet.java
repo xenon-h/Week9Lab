@@ -40,8 +40,8 @@ public class userServlet extends HttpServlet {
         UserDB db = new UserDB();
         
         try {
-            User user = db.get("cprg352+admin@gmail.com");
-            request.setAttribute("test",user);
+            userList = db.getAll();
+            request.setAttribute("test",userList);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

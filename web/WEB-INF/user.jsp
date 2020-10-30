@@ -25,12 +25,12 @@
                 <c:forEach items = "${userList}" var = "item">  
                     <tr>
                         <td><input type ="radio" value ="${item}" name = "edit"></td><br>
-                        <td>${user.email}</td>
-                        <td>${user.active}</td>
-                        <td>${user.firstname}</td>
-                        <td>${user.lastname}</td>
-                        <td>${user.password}</td>
-                        <td>${user.role}</td>
+                        <td>${item.email}</td>
+                        <td>${item.active}</td>
+                        <td>${item.firstName}</td>
+                        <td>${item.lastName}</td>
+                        <td>${item.password}</td>
+                        <td>${item.role}</td>
                     </tr>
                 </c:forEach>
             </table>
