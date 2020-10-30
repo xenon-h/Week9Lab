@@ -16,6 +16,27 @@
                 <div class = "Header"><h1>User Database</h1></div>
                 <table>
                     <tr>
+                        <td><input type ="radio" value ="${item}" name = "edit"></td><br>
+                        <td>${item.email}</td>
+                        <td>${item.active}</td>
+                        <td>${item.firstName}</td>
+                        <td>${item.lastName}</td>
+                        <td>${item.password}</td>
+                        <td>${item.role}</td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
+        <div class = "AddUser">
+            <div class = "Header"><h1>Add User</h1></div>
+
+            <form method='post' action='user'>
+                <input type='text' name='firstName' value='${editUser.firstName}'><br>
+                <input type='text' name='lastName' value='${editUser.lastName}'><br>
+                <input type='password' name='password' value='${editUser.passWord}'><br>
+                <select name = "role" value = "${editUser.role}"><br>
+                    <c:forEach items="${roleList}" var = "role">
+                        <option value='${role}'>${role}}</option>
                         <td></td>
                         <td>Email</td>
                         <td>Active</td>

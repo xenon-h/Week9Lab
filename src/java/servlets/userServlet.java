@@ -35,6 +35,18 @@ public class userServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        UserService service = new UserService();
+        ArrayList<User> userList = new ArrayList();
+        UserDB db = new UserDB();
+        
+        try {
+            userList = db.getAll();
+            request.setAttribute("test",userList);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        request.setAttribute("userList", userList);
+
         getServletContext().getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
     }
 
@@ -49,38 +61,34 @@ public class userServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       UserService service = new UserService();
+        UserService service = new UserService();
         ArrayList<User> userList = new ArrayList();
         try {
             userList = service.getAllUsers();
-            System.out.println( "test");
+            System.out.println("test");
         } catch (Exception ex) {
             Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         String email = request.getParameter("email");
         String active = request.getParameter("active");
         boolean isActive;
-        if(active.equals("1")){
+        if (active.equals("1")) {
             isActive = true;
-        }
-        else{
+        } else {
             isActive = false;
         }
         String firstname = request.getParameter("firstname");;
         String lastname = request.getParameter("lastname");
         String password = request.getParameter("password");
         int role = Integer.parseInt(request.getParameter("role"));//change role to string in the User class 
-        
-        
-        User editUser = new User(email,firstname,lastname,password,role,isActive);
+
+        User editUser = new User(email, firstname, lastname, password, role, isActive);
         userList.add(editUser);
-        
-    
-        request.setAttribute("userList",userList);
-        request.setAttribute("editUser",editUser);
-        
-        
+
+        request.setAttribute("userList", userList);
+        request.setAttribute("editUser", editUser);
+
         getServletContext().getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
 
     }

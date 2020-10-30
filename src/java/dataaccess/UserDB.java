@@ -17,15 +17,16 @@ import models.User;
  */
 public class UserDB {
 
-    ArrayList<User> userList = new ArrayList();
+    
+
+    String getAllStmt = "SELECT * from user";
+
+    public ArrayList<User> getAll() throws Exception {
+        ArrayList<User> userList = new ArrayList();
     ConnectionPool cp = ConnectionPool.getInstance();
     Connection con = cp.getConnection();
     PreparedStatement ps = null;
     ResultSet rs = null;
-
-    String getAllStmt = "SELECT * from userdb";
-
-    public ArrayList<User> getAll() throws Exception {
 
         try {
             ps = con.prepareStatement(getAllStmt);
@@ -54,13 +55,17 @@ public class UserDB {
         return userList;
 
     }
-    String getStmt = "SELECT * from userdb WHERE email = ?";
 
     public User get(String email) throws Exception {
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection con = cp.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
         User user = null;
 
         try {
+            String getStmt = "SELECT * from userdb WHERE email = ?";
             ps = con.prepareStatement(getStmt);
             ps.setString(1, email);
             rs = ps.executeQuery();
@@ -79,7 +84,12 @@ public class UserDB {
 
             }
 
+        } catch (Exception e) {
+            System.out.println("dsa");
+            e.printStackTrace();
         } finally {
+            System.out.println(con.toString());
+
             DBUtil.closeResultSet(rs);
             DBUtil.closePreparedStatement(ps);
             cp.freeConnection(con);
