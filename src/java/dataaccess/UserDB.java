@@ -17,16 +17,14 @@ import models.User;
  */
 public class UserDB {
 
-    
-
     String getAllStmt = "SELECT * from user";
 
     public ArrayList<User> getAll() throws Exception {
         ArrayList<User> userList = new ArrayList();
-    ConnectionPool cp = ConnectionPool.getInstance();
-    Connection con = cp.getConnection();
-    PreparedStatement ps = null;
-    ResultSet rs = null;
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection con = cp.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
         try {
             ps = con.prepareStatement(getAllStmt);
@@ -40,7 +38,7 @@ public class UserDB {
                 String firstName = rs.getString(3);
                 String lastName = rs.getString(4);
                 String password = rs.getString(5);
-                int role = rs.getInt(6);
+                int role = rs.getInt(6); //I think this should be another query to retrieve the role name
 
                 User user = new User(email, firstName, lastName, password, role, active);
                 userList.add(user);

@@ -13,9 +13,17 @@
     <body>
         <div class="grid-container">
             <div id="ViewUser">
-                <div class = "Header"><h1>User Database</h1></div>
+                <h4>User Database</h4>
                 <table>
-
+                    <tr class="columnLabels">
+                        <td>Edit</td>
+                        <td>Email</td>
+                        <td>Active</td>
+                        <td>First Name</td>
+                        <td>Last Name</td>
+                        <td>Password</td>
+                        <td>Role</td>
+                    </tr>
                     <c:forEach items="${userList}" var="item">
                         <tr>
                             <td><input type ="radio" value ="${item}" name = "edit"></td><br>
@@ -31,7 +39,7 @@
             </div>
 
             <div id="AddUser">
-                <div class = "Header"><h1>Add User</h1></div>
+                <h4>Add User</h4>
 
                 <form method='post' action='user'>
                     <div class="inputs">
@@ -50,7 +58,7 @@
             </div>
 
             <div id="EditUser">
-                <div class = "Header"><h1>Edit User</h1></div>
+                <h4>Edit User</h4>
 
                 <form method='post' action='user'>
                     <div class="inputs">

@@ -16,36 +16,40 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
-	display: block;
+    display: block;
 }
 body {
-	line-height: 1;
+    line-height: 1;
 }
 ol, ul {
-	list-style: none;
+    list-style: none;
 }
 blockquote, q {
-	quotes: none;
+    quotes: none;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+    content: '';
+    content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
+
+/*
+End CSS reset
+*/
 
 #ViewUser{
     grid-row-start: 1;
@@ -57,13 +61,16 @@ table {
 #AddUser{
     grid-column-start: 2;
 }
-#Header{
-    background-color:#D7BFF6;
-}
-tr td{
+tr {
     border-style:solid;
     border-width:2px;
     background-color: #CFCFCF;
+}
+
+td{
+    padding-right: 30px;
+    
+    padding: 10px;
 }
 
 body{
@@ -72,9 +79,12 @@ body{
 }
 
 .grid-container{
+    margin-top: 10vh;
+    margin-left: 2vw;
+    margin-right: 2vw;
     display: grid;
     grid-template-columns: auto 200px;
-    grid-gap: 10px;
+    grid-gap: 3vw;
 }
 
 .grid-container > div {
@@ -89,4 +99,26 @@ body{
     flex-direction: column;
     justify-content: space-around;
     margin-bottom: 10px;
+    height: 20vh;
+}
+
+
+h2 {
+    font-size: 60px;
+}
+
+h3{
+    font-size: 48px;
+}
+
+h4{
+    font-size: 34px;
+}
+
+h5, .columnLabels{
+    font-size: 24px;
+}
+
+table{
+    width: 100%;
 }
