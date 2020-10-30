@@ -35,7 +35,6 @@ public class userServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
-
     }
 
     /**
@@ -78,8 +77,6 @@ public class userServlet extends HttpServlet {
     
         request.setAttribute("userList",userList);
         request.setAttribute("editUser",editUser);
-        
-        
         
         
         getServletContext().getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
