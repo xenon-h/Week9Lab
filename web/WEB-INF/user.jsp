@@ -1,5 +1,7 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<link rel="stylesheet" href="style.css">
 
 <!DOCTYPE html>
 <html>
@@ -8,7 +10,8 @@
         <title>User Database</title>
     </head>
     <body>
-        <div name = "ViewUser">
+        <div class = "ViewUser">
+            <div class = "Header"><h1>User Database</h1></div>
             <table>
                 <tr>
                     <td></td>
@@ -32,33 +35,15 @@
                 </c:forEach>
             </table>
         </div>
-        <div name = "AddUser">
-
-
-            <form method='post' action='user'>
-                <input type='radio' name='active' value='${editUser.active}'>
-                <input type='text' name='firstName' value='${editUser.firstName}'>
-                <input type='text' name='lastName' value='${editUser.lastName}'>
-                <input type='password' name='password' value='${editUser.passWord}'>
-                <select name = "role" value = "${editUser.role}">
-                    <c:forEach items="${roleList}" var = "role">
-                        <option value='${role}'>${role}</option>
-                    </c:forEach>
-                </select>
-                <input type='submit' value='Submit'>
-
-
-            </form>
-        </div>
-        <div name = "EditUser">
-
+        <div class = "AddUser">
+            <div class = "Header"><h1>Add User</h1></div>
 
             <form method='post' action='user'>
-                <input type='radio' name='active' value='${editUser.active}'>
-                <input type='text' name='firstName' value='${editUser.firstName}'>
-                <input type='text' name='lastName' value='${editUser.lastName}'>
-                <input type='password' name='password' value='${editUser.passWord}'>
-                <select name = "role" value = "${editUser.role}">
+                <input type='radio' name='active' value='${editUser.active}'><br>
+                <input type='text' name='firstName' value='${editUser.firstName}'><br>
+                <input type='text' name='lastName' value='${editUser.lastName}'><br>
+                <input type='password' name='password' value='${editUser.passWord}'><br>
+                <select name = "role" value = "${editUser.role}"><br>
                     <c:forEach items="${roleList}" var = "role">
                         <option value='${role}'>${role}}</option>
                     </c:forEach>
@@ -68,15 +53,15 @@
 
             </form>
         </div>
-        <div name = "EditUser">
-
+        <div class = "EditUser">
+            <div class = "Header"><h1>Edit User</h1></div>
 
             <form method='post' action='user'>
-                <input type='radio' name='active' value='${editUser.active}'>
-                <input type='text' name='firstName' value='${editUser.firstName}'>
-                <input type='text' name='lastName' value='${editUser.lastName}'>
-                <input type='password' name='password' value='${editUser.passWord}'>
-                <select name = "role" value = "${editUser.role}">
+                <input type='radio' name='active' value='${editUser.active}'><br>
+                <input type='text' name='firstName' value='${editUser.firstName}'><br>
+                <input type='text' name='lastName' value='${editUser.lastName}'><br>
+                <input type='password' name='password' value='${editUser.passWord}'><br>
+                <select name = "role" value = "${editUser.role}"><br>
                     <c:forEach items="${roleList}" var = "role">
                         <option value='${role}'>${role}}</option>
                     </c:forEach>
