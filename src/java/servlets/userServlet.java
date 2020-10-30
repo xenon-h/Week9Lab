@@ -5,8 +5,11 @@
  */
 package servlets;
 
+import dataaccess.UserDB;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -46,8 +49,13 @@ public class userServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+        UserDB db = new UserDB();
+        ArrayList<User> userList = new ArrayList();
+        try {
+            userList = db.getAll();
+        } catch (Exception ex) {
+            Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         String email = request.getParameter("email");
         String active = request.getParameter("active");
@@ -65,7 +73,6 @@ public class userServlet extends HttpServlet {
         
         
         User editUser = new User(email,firstname,lastname,password,role,isActive);
-        ArrayList<User> userList = new ArrayList<User>();
         userList.add(editUser);
         
     
