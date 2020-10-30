@@ -24,7 +24,7 @@
                 </tr>
                 <c:forEach items = "${userList}" var = "item">  
                     <tr>
-                        <td><input type ="radio" value ="${item}" name = "edit">${user}<br></td>
+                        <td><input type ="radio" value ="${item}" name = "edit"></td><br>
                         <td>${user.email}</td>
                         <td>${user.active}</td>
                         <td>${user.firstname}</td>
@@ -39,7 +39,6 @@
             <div class = "Header"><h1>Add User</h1></div>
 
             <form method='post' action='user'>
-                <input type='radio' name='active' value='${editUser.active}'><br>
                 <input type='text' name='firstName' value='${editUser.firstName}'><br>
                 <input type='text' name='lastName' value='${editUser.lastName}'><br>
                 <input type='password' name='password' value='${editUser.passWord}'><br>
@@ -57,7 +56,6 @@
             <div class = "Header"><h1>Edit User</h1></div>
 
             <form method='post' action='user'>
-                <input type='radio' name='active' value='${editUser.active}'><br>
                 <input type='text' name='firstName' value='${editUser.firstName}'><br>
                 <input type='text' name='lastName' value='${editUser.lastName}'><br>
                 <input type='password' name='password' value='${editUser.passWord}'><br>

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.User;
+import services.UserService;
 
 /**
  *
@@ -48,10 +49,11 @@ public class userServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        UserDB db = new UserDB();
+       UserService service = new UserService();
         ArrayList<User> userList = new ArrayList();
         try {
-            userList = db.getAll();
+            userList = service.getAllUsers();
+            System.out.println( "test");
         } catch (Exception ex) {
             Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
