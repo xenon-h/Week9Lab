@@ -9,6 +9,8 @@ import models.*;
 import dataaccess.UserDB;
 import dataaccess.RoleDB;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,24 +26,26 @@ public class UserService {
     
     public User getUser(String email)throws Exception{
         UserDB userDB = new UserDB();
-        return userDB.getUser(email);
+        return userDB.get(email);
     }
 
     public void updateUser(String email, Boolean active, String firstName, String lastName, String password, int role)throws Exception {
         UserDB userDB = new UserDB();
         User currUser = new User(email, firstName, lastName, password, role, active);
-        userDB.updateUser(currUser);
+        userDB.update(currUser);
     }
 
-    public void deleteUser(String email) {
+    public void deleteUser(String email) throws Exception{
         UserDB userDB = new UserDB();
-        userDB.deleteUser(email);
+        User user;
+        user = userDB.get(email);
+        userDB.delete(user);
     }
 
     public void addUser(String email, Boolean active, String firstName, String lastName, String password, int role) throws Exception{
         UserDB userDB = new UserDB();
         User newUser = new User(email, firstName, lastName, password, role, active);
-        userDB.addUser(newUser);
+        userDB.insert(newUser);
 
     }
 

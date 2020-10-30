@@ -42,6 +42,24 @@
                 <input type='password' name='password' value='${editUser.passWord}'>
                 <select name = "role" value = "${editUser.role}">
                     <c:forEach items="${roleList}" var = "role">
+                        <option value='${role}'>${role}</option>
+                    </c:forEach>
+                </select>
+                <input type='submit' value='Submit'>
+
+
+            </form>
+        </div>
+        <div name = "EditUser">
+
+
+            <form method='post' action='user'>
+                <input type='radio' name='active' value='${editUser.active}'>
+                <input type='text' name='firstName' value='${editUser.firstName}'>
+                <input type='text' name='lastName' value='${editUser.lastName}'>
+                <input type='password' name='password' value='${editUser.passWord}'>
+                <select name = "role" value = "${editUser.role}">
+                    <c:forEach items="${roleList}" var = "role">
                         <option value='${role}'>${role}}</option>
                     </c:forEach>
                 </select>
