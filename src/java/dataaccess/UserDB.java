@@ -64,7 +64,45 @@ public class UserDB {
         return userList;
         
     }
-    
+    String getStmt = "SELECT * from userdb WHERE email = ?";
+    public User get(String email) throws Exception{
+        
+        User user = null;
+        
+        try{
+        ps = con.prepareStatement(getStmt);
+        ps.setString(1, email);
+        rs = ps.executeQuery();
+        
+        while(rs.next()){
+            
+            //email,active,firstname, lastname,password, role
+            
+            String emailString = rs.getString(1);
+            Boolean active = rs.getBoolean(2);
+            String firstName = rs.getString(3);
+            String lastName = rs.getString(4);
+            String password = rs.getString(5);
+            int role = rs.getInt(6);
+            
+            user = new User(emailString, firstName,lastName, password, role, active);
+            
+            
+            
+        }
+        
+        
+        
+        
+        }
+        finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            cp.freeConnection(con);
+        }
+        return user;
+        
+    }
     
     
     
