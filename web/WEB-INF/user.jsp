@@ -43,16 +43,17 @@
 
                 <form method='post' action='user'>
                     <div class="inputs">
-                        <input type='text' name='firstName' value='${editUser.firstName}'>
-                        <input type='text' name='lastName' value='${editUser.lastName}'>
-                        <input type='password' name='password' value='${editUser.passWord}'>
-                        <select name = "role" value = "${editUser.role}">
-                            <c:forEach items="${roleList}" var = "role">
-                                <option value='${role}'>${role}}</option>
-                            </c:forEach>
-                        </select>
+                        <label>First Name<input type='text' name='firstName' value='${editUser.firstName}'></label>
+                        <label>Last Name<input type='text' name='lastName' value='${editUser.lastName}'></label>
+                        <label>Password<input type='password' name='password' value='${editUser.passWord}'></label>
+                        <label>Role
+                            <select name = "role" value = "${editUser.role}">
+                                <c:forEach items="${roleList}" var = "role">
+                                    <option value='${role}'>${role}}</option>
+                                </c:forEach>
+                            </select>
                     </div>
-                    <input type='submit' value='Submit'>
+                    <input class="submit" type='submit' value='Add'>
 
                 </form>
             </div>
@@ -62,16 +63,17 @@
 
                 <form method='post' action='user'>
                     <div class="inputs">
-                        <input type='text' name='firstName' value='${editUser.firstName}'>
-                        <input type='text' name='lastName' value='${editUser.lastName}'>
-                        <input type='password' name='password' value='${editUser.passWord}'>
-                        <select name = "role" value = "${editUser.role}">
-                            <c:forEach items="${roleList}" var = "role">
-                                <option value='${role}'>${role}}</option>
-                            </c:forEach>
-                        </select>
+                        <label>First Name<input type='text' name='firstName' value='${editUser.firstName}'></label>
+                        <label>Last Name<input type='text' name='lastName' value='${editUser.lastName}'></label>
+                        <label>Password<input type='password' name='password' value='${editUser.passWord}'></label>
+                        <label>Role
+                            <select name = "role" value = "${editUser.role}">
+                                <c:forEach items="${roleList}" var = "role">
+                                    <option value='${role}'>${role}}</option>
+                                </c:forEach>
+                            </select>
                     </div>
-                    <input type='submit' value='Submit'>
+                    <input class="submit" type='submit' value='Edit'>
                 </form>
             </div>
         </div>

@@ -79,7 +79,7 @@ body{
 }
 
 .grid-container{
-    margin-top: 10vh;
+    margin-top: 5vh;
     margin-left: 2vw;
     margin-right: 2vw;
     display: grid;
@@ -95,11 +95,11 @@ body{
 
 .inputs {
     margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-bottom: 10px;
-    height: 20vh;
+}
+
+.inputs > label {
+    margin-top: 2vh;
+    display: block;
 }
 
 
@@ -121,4 +121,10 @@ h5, .columnLabels{
 
 table{
     width: 100%;
+}
+
+.submit{
+    margin-top: 2vh;
+    width: 100%;
+    font-size: 16px;
 }
