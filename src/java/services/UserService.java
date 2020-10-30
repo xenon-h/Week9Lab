@@ -49,10 +49,10 @@ public class UserService {
 
     }
 
-    public ArrayList<User> getAllRoles() throws Exception {
-        RoleDB roleDB = new RoleDB();
-        ArrayList resultSet = roleDB.getAll();
-        return resultSet;
-    }
+//    public ArrayList<User> getAllRoles() throws Exception {
+//        RoleDB roleDB = new RoleDB();
+//        ArrayList resultSet = roleDB.getAll();
+//        return resultSet;
+//    }
 
 }
