@@ -54,13 +54,13 @@ public class UserDB {
         return userList;
 
     }
-    String getStmt = "SELECT * from userdb WHERE email = ?";
 
     public User get(String email) throws Exception {
 
         User user = null;
 
         try {
+            String getStmt = "SELECT * from userdb WHERE email = ?";
             ps = con.prepareStatement(getStmt);
             ps.setString(1, email);
             rs = ps.executeQuery();
@@ -79,7 +79,12 @@ public class UserDB {
 
             }
 
+        } catch (Exception e) {
+            System.out.println("dsa");
+            e.printStackTrace();
         } finally {
+            System.out.println(con.toString());
+
             DBUtil.closeResultSet(rs);
             DBUtil.closePreparedStatement(ps);
             cp.freeConnection(con);

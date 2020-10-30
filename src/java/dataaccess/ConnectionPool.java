@@ -13,6 +13,7 @@ public class ConnectionPool {
         try {
             InitialContext ic = new InitialContext();
             dataSource = (DataSource) ic.lookup("java:/comp/env/jdbc/userdb");
+            
         } catch (NamingException e) {
             System.out.println(e);
         }
@@ -26,6 +27,9 @@ public class ConnectionPool {
     }
 
     public Connection getConnection() {
+        if (pool == null) {
+            pool = new ConnectionPool();
+        }
         try {
             return dataSource.getConnection();
         } catch (SQLException e) {
