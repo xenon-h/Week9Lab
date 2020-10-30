@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/Week8Lab"/>
+<Context path="/Week8Lab">
     <Resource name="jdbc/userdb" auth="Container" 
         driverClassName="com.mysql.jdbc.Driver"
         url="jdbc:mysql://localhost:3306/userdb" 
