@@ -5,10 +5,6 @@
         <servlet-class>servlets.userServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>TODO</servlet-name>
-        <url-pattern>/TODO</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>userServlet</servlet-name>
         <url-pattern>/user</url-pattern>
     </servlet-mapping>
@@ -18,6 +14,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>TODO</welcome-file>
+        <welcome-file>user</welcome-file>
     </welcome-file-list>
 </web-app>

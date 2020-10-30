@@ -7,7 +7,7 @@ package models;
 
 /**
  *
- * @author User
+ * @author Jordan
  */
 public class Role {
     private String role_name = null;
