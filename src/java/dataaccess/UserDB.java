@@ -108,8 +108,86 @@ public class UserDB {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection con = cp.getConnection();
         
+        
+        PreparedStatement ps = null;
+        
+        String insertStmt = "INSERT INTO userdb(email, active, firstName, lastName, password, role) VALUES(?, ?, ?, ?, ?, ?)";
+        
+        try{
+            ps = con.prepareStatement(insertStmt);
+            
+            ps.setString(1, user.getEmail());
+            ps.setBoolean(2, user.isActive());
+            ps.setString(3, user.getFirstName());
+            ps.setString(4, user.getLastName());
+            ps.setString(5, user.getPassword());
+            ps.setInt(6, user.getRole());
+            
+        }
+        finally{
+            DBUtil.closePreparedStatement(ps);
+            cp.freeConnection(con);
+        }
+        
+        
+        
+        
+        
+        
     }
     
+    public void update(User user) throws Exception
+        {
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection con = cp.getConnection();
+        PreparedStatement ps = null;
+        
+        String updateStmt = "UPDATE userdb SET email=?, active=?, firstName=?, lastName=?, password=?, role=? WHERE email=?";
+        
+        try{
+             ps = con.prepareStatement(updateStmt);
+        ps.setString(1, user.getEmail());
+            ps.setBoolean(2, user.isActive());
+            ps.setString(3, user.getFirstName());
+            ps.setString(4, user.getLastName());
+            ps.setString(5, user.getPassword());
+            ps.setInt(6, user.getRole());
+            ps.setString(7, user.getEmail());
+        }
+        finally {
+            DBUtil.closePreparedStatement(ps);
+            cp.freeConnection(con);
+        }
+        
+        
+        
+        
+        }
     
+    public void delete(User user) throws Exception
+    {
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection con = cp.getConnection();
+        PreparedStatement ps = null;
+        
+        String deleteStmt = "DELETE FROM userdb WHERE email=?";
+        
+        
+        
+        try{
+         ps = con.prepareStatement(deleteStmt);
+         ps.setString(1, user.getEmail());
+         ps.executeUpdate();
+        }
+        finally {
+            DBUtil.closePreparedStatement(ps);
+            cp.freeConnection(con);
+        }
+        
+        
+        
+        
+        
+    }
     
 }
