@@ -15,45 +15,16 @@
             <div id="ViewUser">
                 <div class = "Header"><h1>User Database</h1></div>
                 <table>
-                    <tr>
-                        <td><input type ="radio" value ="${item}" name = "edit"></td><br>
+
+                    <c:forEach items="${userList}" var="item">
+                        <tr>
+                            <td><input type ="radio" value ="${item}" name = "edit"></td><br>
                         <td>${item.email}</td>
                         <td>${item.active}</td>
                         <td>${item.firstName}</td>
                         <td>${item.lastName}</td>
                         <td>${item.password}</td>
                         <td>${item.role}</td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </div>
-        <div class = "AddUser">
-            <div class = "Header"><h1>Add User</h1></div>
-
-            <form method='post' action='user'>
-                <input type='text' name='firstName' value='${editUser.firstName}'><br>
-                <input type='text' name='lastName' value='${editUser.lastName}'><br>
-                <input type='password' name='password' value='${editUser.passWord}'><br>
-                <select name = "role" value = "${editUser.role}"><br>
-                    <c:forEach items="${roleList}" var = "role">
-                        <option value='${role}'>${role}}</option>
-                        <td></td>
-                        <td>Email</td>
-                        <td>Active</td>
-                        <td>First Name</td>
-                        <td>Last Name</td>
-                        <td>Password</td>
-                        <td>Role</td>
-                    </tr>
-                    <c:forEach items = "${userList}" var = "item">  
-                        <tr>
-                            <td><input type ="radio" value ="${item}" name = "edit"></td><br>
-                        <td>${user.email}</td>
-                        <td>${user.active}</td>
-                        <td>${user.firstname}</td>
-                        <td>${user.lastname}</td>
-                        <td>${user.password}</td>
-                        <td>${user.role}</td>
                         </tr>
                     </c:forEach>
                 </table>
@@ -73,7 +44,6 @@
                             </c:forEach>
                         </select>
                     </div>
-                            <a href="user" method="post"
                     <input type='submit' value='Submit'>
 
                 </form>
