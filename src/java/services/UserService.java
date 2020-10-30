@@ -23,7 +23,7 @@ public class UserService {
     }
     
     public User getUser(String email)throws Exception{
-        UserDb userDB = new UserDB();
+        UserDB userDB = new UserDB();
         return userDB.getUser(email);
     }
 
