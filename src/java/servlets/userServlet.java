@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Role;
 import models.User;
 import services.UserService;
 
@@ -36,16 +37,17 @@ public class userServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserService service = new UserService();
-        ArrayList<User> userList = new ArrayList();
-        UserDB db = new UserDB();
-        
+        ArrayList<User> userList;
+        ArrayList<Role> roles;
+
         try {
-            userList = db.getAll();
-            request.setAttribute("test",userList);
+            userList = service.getAllUsers();
+            roles = service.getAllRoles();
+            request.setAttribute("userList", userList);
+            request.setAttribute("roles", roles);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        request.setAttribute("userList", userList);
 
         getServletContext().getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
     }

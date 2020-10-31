@@ -48,8 +48,8 @@
                         <label>Password<input type='password' name='password' value='${editUser.passWord}'></label>
                         <label>Role
                             <select name = "role" value = "${editUser.role}">
-                                <c:forEach items="${roleList}" var = "role">
-                                    <option value='${role}'>${role}}</option>
+                                <c:forEach items="${roles}" var = "role">
+                                    <option value='${role.roleId}'>${role.roleName}</option>
                                 </c:forEach>
                             </select>
                     </div>
@@ -68,8 +68,8 @@
                         <label>Password<input type='password' name='password' value='${editUser.passWord}'></label>
                         <label>Role
                             <select name = "role" value = "${editUser.role}">
-                                <c:forEach items="${roleList}" var = "role">
-                                    <option value='${role}'>${role}}</option>
+                                <c:forEach items="${roles}" var = "role">
+                                    <option value='${role.roleId}'>${role.roleName}</option>
                                 </c:forEach>
                             </select>
                     </div>

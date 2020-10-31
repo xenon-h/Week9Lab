@@ -24,7 +24,7 @@ public class RoleDB {
         Connection con = cp.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String getAllStmt = "select * from roledb";
+        String getAllStmt = "select * from role";
 
         try {
             ps = con.prepareStatement(getAllStmt);
