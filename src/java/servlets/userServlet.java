@@ -69,13 +69,14 @@ public class userServlet extends HttpServlet {
 
         if (action != null) {
             switch (action) {
-                case "Delete":
+                case "Delete": //TODO for deleting a user
                     break;
-                case "editSelect":
+                case "editSelect": //TODO for selecting a user to edit
                     break;
                 default:
 
                     String email = request.getParameter("email");
+                    String actives = request.getParameter("active");
                     Boolean active = Boolean.parseBoolean(request.getParameter("active"));
                     String firstName = request.getParameter("firstName");
                     String lastName = request.getParameter("lastName");
@@ -83,30 +84,32 @@ public class userServlet extends HttpServlet {
                     int role = Integer.parseInt(request.getParameter("role"));//change role to string in the User class 
                     if (validateFields(email, active, firstName, lastName, password)) {
 
-                    }
-                    switch (action) {
-                        case "Add": {
-                            try {
-                                service.addUser(email, active, firstName, lastName, password, role);
-                            } catch (Exception ex) {
-                                Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
-                                User user = new User(email, firstName, lastName, password, role, active);
-                                request.setAttribute("newUser", user);
-                            }
-                        }
-                        break;
-                        case "Edit":
-                            try {
-                                service.updateUser(email, active, firstName, lastName, password, role);
-                            } catch (Exception ex) {
-                                Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
-                                User user = new User(email, firstName, lastName, password, role, active);
-                                request.setAttribute("editUser", user);
+                        switch (action) {
+                            case "Add": {
+                                try {
+                                    service.addUser(email, active, firstName, lastName, password, role);
+                                } catch (Exception ex) {
+                                    Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
+                                    User user = new User(email, firstName, lastName, password, role, active);
+                                    request.setAttribute("newUser", user);
+                                }
                             }
                             break;
+                            case "Edit":
+                                try {
+                                    service.updateUser(email, active, firstName, lastName, password, role);
+                                } catch (Exception ex) {
+                                    Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
+                                    User user = new User(email, firstName, lastName, password, role, active);
+                                    request.setAttribute("editUser", user);
+                                }
+                                break;
+                        }
+                    } else{
+                        //message about invalid fields potentially
                     }
-
                     break;
+
             }
         }
 
@@ -128,10 +131,7 @@ public class userServlet extends HttpServlet {
 
     private boolean validateFields(String email, Boolean active, String firstName, String lastName, String password) {
 
-        if (email != null && !email.equals("") && firstName != null && !firstName.equals("") && password != null && !password.equals("")) {
-            return true;
-        }
-        return false;
+        return email != null && !email.equals("") && firstName != null && !firstName.equals("") && password != null && !password.equals("");
 
     }
 

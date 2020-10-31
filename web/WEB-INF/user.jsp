@@ -47,7 +47,11 @@
                         <label>First Name<input type='text' name='firstName' value='${newUser.firstName}'></label>
                         <label>Last Name<input type='text' name='lastName' value='${newUser.lastName}'></label>
                         <label>Password<input type='password' name='password' value='${newUser.password}'></label>
-                        <label>Role
+                        <label class="switch">Active<br>
+                            <input type="checkbox" name="active" value='true' checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <label>Role<br>
                             <select name = "role" value = "${newUser.role}">
                                 <c:forEach items="${roles}" var = "role">
                                     <option value='${role.roleId}'>${role.roleName}</option>
@@ -67,7 +71,11 @@
                         <label>First Name<input type='text' name='firstName' value='${editUser.firstName}'></label>
                         <label>Last Name<input type='text' name='lastName' value='${editUser.lastName}'></label>
                         <label>Password<input type='password' name='password' value='${editUser.password}'></label>
-                        <label>Role
+                        <label class="switch">Active<br>
+                            <input type="checkbox" name='active' value='${editUser.active}' checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <label>Role<br>
                             <select name = "role" value = "${editUser.role}">
                                 <c:forEach items="${roles}" var = "role">
                                     <option value='${role.roleId}'>${role.roleName}</option>
