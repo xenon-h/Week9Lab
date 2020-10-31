@@ -66,7 +66,7 @@
                     <div class="inputs">
                         <label>First Name<input type='text' name='firstName' value='${editUser.firstName}'></label>
                         <label>Last Name<input type='text' name='lastName' value='${editUser.lastName}'></label>
-                        <label>Password<input type='password' name='password' value='${editUser.passWord}'></label>
+                        <label>Password<input type='password' name='password' value='${editUser.password}'></label>
                         <label>Role
                             <select name = "role" value = "${editUser.role}">
                                 <c:forEach items="${roles}" var = "role">

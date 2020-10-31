@@ -27,9 +27,6 @@ public class User implements Serializable{
         this.password = password;
         this.role = role;
         this.active = active;
-        
-        
-        
     }
 
     public String getLastName() {
@@ -40,10 +37,6 @@ public class User implements Serializable{
         this.lastName = lastName;
     }
     
-    
-    
-    
-
     public String getEmail() {
         return email;
     }

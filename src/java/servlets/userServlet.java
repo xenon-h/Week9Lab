@@ -77,8 +77,8 @@ public class userServlet extends HttpServlet {
 
                     String email = request.getParameter("email");
                     Boolean active = Boolean.parseBoolean(request.getParameter("active"));
-                    String firstName = request.getParameter("firstname");
-                    String lastName = request.getParameter("lastname");
+                    String firstName = request.getParameter("firstName");
+                    String lastName = request.getParameter("lastName");
                     String password = request.getParameter("password");
                     int role = Integer.parseInt(request.getParameter("role"));//change role to string in the User class 
                     if (validateFields(email, active, firstName, lastName, password)) {
@@ -111,12 +111,16 @@ public class userServlet extends HttpServlet {
         }
 
         ArrayList<User> userList = new ArrayList();
+        ArrayList<Role> roles;
+
         try {
             userList = service.getAllUsers();
+            roles = service.getAllRoles();
+            request.setAttribute("userList", userList);
+            request.setAttribute("roles", roles);
         } catch (Exception ex) {
             Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        request.setAttribute("userList", userList);
 
         getServletContext().getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
 

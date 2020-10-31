@@ -39,8 +39,7 @@ public class UserDB {
                 String lastName = rs.getString(4);
                 String password = rs.getString(5);
                 int role = rs.getInt(6); //I think this should be another query to retrieve the role name
-                
-                
+
                 User user = new User(email, firstName, lastName, password, role, active);
                 userList.add(user);
 
@@ -64,7 +63,7 @@ public class UserDB {
         User user = null;
 
         try {
-            String getStmt = "SELECT * from userdb WHERE email = ?";
+            String getStmt = "SELECT * from user WHERE email = ?";
             ps = con.prepareStatement(getStmt);
             ps.setString(1, email);
             rs = ps.executeQuery();
@@ -103,7 +102,7 @@ public class UserDB {
 
         PreparedStatement ps = null;
 
-        String insertStmt = "INSERT INTO userdb(email, active, firstName, lastName, password, role) VALUES(?, ?, ?, ?, ?, ?)";
+        String insertStmt = "INSERT INTO user(email, active, first_name, last_name, password, role) VALUES(?, ?, ?, ?, ?, ?)";
 
         try {
             ps = con.prepareStatement(insertStmt);
@@ -114,6 +113,8 @@ public class UserDB {
             ps.setString(4, user.getLastName());
             ps.setString(5, user.getPassword());
             ps.setInt(6, user.getRole());
+
+            ps.executeUpdate();
 
         } finally {
             DBUtil.closePreparedStatement(ps);
@@ -127,7 +128,7 @@ public class UserDB {
         Connection con = cp.getConnection();
         PreparedStatement ps = null;
 
-        String updateStmt = "UPDATE userdb SET email=?, active=?, firstName=?, lastName=?, password=?, role=? WHERE email=?";
+        String updateStmt = "UPDATE user SET email=?, active=?, first_name=?, last_name=?, password=?, role=? WHERE email=?";
 
         try {
             ps = con.prepareStatement(updateStmt);
@@ -138,6 +139,8 @@ public class UserDB {
             ps.setString(5, user.getPassword());
             ps.setInt(6, user.getRole());
             ps.setString(7, user.getEmail());
+            ps.executeUpdate();
+
         } finally {
             DBUtil.closePreparedStatement(ps);
             cp.freeConnection(con);
@@ -150,7 +153,7 @@ public class UserDB {
         Connection con = cp.getConnection();
         PreparedStatement ps = null;
 
-        String deleteStmt = "DELETE FROM userdb WHERE email=?";
+        String deleteStmt = "DELETE FROM user WHERE email=?";
 
         try {
             ps = con.prepareStatement(deleteStmt);
