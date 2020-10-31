@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import models.Role;
 import models.User;
 
 /**
@@ -20,6 +21,10 @@ public class UserDB {
     String getAllStmt = "SELECT * from user";
 
     public ArrayList<User> getAll() throws Exception {
+        
+        RoleDB db = new RoleDB();
+        ArrayList<Role> roleList = db.getAll();
+        
         ArrayList<User> userList = new ArrayList();
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection con = cp.getConnection();
@@ -38,8 +43,12 @@ public class UserDB {
                 String firstName = rs.getString(3);
                 String lastName = rs.getString(4);
                 String password = rs.getString(5);
-                int role = rs.getInt(6); //I think this should be another query to retrieve the role name
-
+                int roleInt = rs.getInt(6); //I think this should be another query to retrieve the role name
+                
+                Role role = db.get(roleInt-1);
+                
+                
+                
                 User user = new User(email, firstName, lastName, password, role, active);
                 userList.add(user);
 
@@ -76,10 +85,14 @@ public class UserDB {
                 String firstName = rs.getString(3);
                 String lastName = rs.getString(4);
                 String password = rs.getString(5);
-                int role = rs.getInt(6);
+                int roleInt = rs.getInt(6);
+                
+                RoleDB db = new RoleDB();
+                ArrayList<Role> roleList = db.getAll();
+                Role role = db.get(roleInt-1);
 
                 user = new User(emailString, firstName, lastName, password, role, active);
-
+                
             }
 
         } catch (Exception e) {
@@ -112,7 +125,7 @@ public class UserDB {
             ps.setString(3, user.getFirstName());
             ps.setString(4, user.getLastName());
             ps.setString(5, user.getPassword());
-            ps.setInt(6, user.getRole());
+            ps.setInt(6, user.getRole().getRoleId());
 
             ps.executeUpdate();
 
@@ -137,7 +150,7 @@ public class UserDB {
             ps.setString(3, user.getFirstName());
             ps.setString(4, user.getLastName());
             ps.setString(5, user.getPassword());
-            ps.setInt(6, user.getRole());
+            ps.setInt(6, user.getRole().getRoleId());
             ps.setString(7, user.getEmail());
             ps.executeUpdate();
 

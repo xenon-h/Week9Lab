@@ -5,7 +5,9 @@
  */
 package models;
 
+import dataaccess.RoleDB;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,14 +19,28 @@ public class User implements Serializable{
     private boolean active = false;
     private String firstName = null, lastName = null;
     private String password = null;
-    private int role = 0; //1 = system admin, regular user = 2, company admin = 3
+    private Role role; //1 = system admin, regular user = 2, company admin = 3
     
-    public User(String email, String firstName, String lastName, String password, int role, boolean active) {
+    public User(String email, String firstName, String lastName, String password, Role role, boolean active) {//Constructor with role as object
         
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
+        this.role = role;
+        this.active = active;
+    }
+    public User(String email, String firstName, String lastName, String password, int roleInt, boolean active) throws Exception {//Constructor with role as integer
+        RoleDB db = new RoleDB();
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        
+        
+        
+        Role role = db.get(roleInt-1);
+        
         this.role = role;
         this.active = active;
     }
@@ -77,11 +93,11 @@ public class User implements Serializable{
         this.password = password;
     }
 
-    public int getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
