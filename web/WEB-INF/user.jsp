@@ -43,6 +43,7 @@
 
                 <form method='post' action='user'>
                     <div class="inputs">
+                        <label>Email<input type='text' name='email' value='${editUser.firstName}'></label>
                         <label>First Name<input type='text' name='firstName' value='${editUser.firstName}'></label>
                         <label>Last Name<input type='text' name='lastName' value='${editUser.lastName}'></label>
                         <label>Password<input type='password' name='password' value='${editUser.passWord}'></label>
@@ -53,7 +54,7 @@
                                 </c:forEach>
                             </select>
                     </div>
-                    <input class="submit" type='submit' value='Add'>
+                    <input class="submit" type='submit' name='submit' value='Add'>
 
                 </form>
             </div>
@@ -73,7 +74,7 @@
                                 </c:forEach>
                             </select>
                     </div>
-                    <input class="submit" type='submit' value='Edit'>
+                    <input class="submit" type='submit' name='submit' value='Edit'>
                 </form>
             </div>
         </div>

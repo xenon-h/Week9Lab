@@ -73,19 +73,13 @@ public class userServlet extends HttpServlet {
         }
 
         String email = request.getParameter("email");
-        String active = request.getParameter("active");
-        boolean isActive;
-        if (active.equals("1")) {
-            isActive = true;
-        } else {
-            isActive = false;
-        }
+        Boolean active = Boolean.parseBoolean(request.getParameter("active"));
         String firstname = request.getParameter("firstname");;
         String lastname = request.getParameter("lastname");
         String password = request.getParameter("password");
         int role = Integer.parseInt(request.getParameter("role"));//change role to string in the User class 
 
-        User editUser = new User(email, firstname, lastname, password, role, isActive);
+        User editUser = new User(email, firstname, lastname, password, role, active);
         userList.add(editUser);
 
         request.setAttribute("userList", userList);
