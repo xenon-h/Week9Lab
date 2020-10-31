@@ -68,22 +68,36 @@ public class userServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action != null) {
+
+            String email = request.getParameter("email");
+
             switch (action) {
-                case "Delete": //TODO for deleting a user
+                case "delete":
+                    try {
+                        service.deleteUser(email);
+                    } catch (Exception ex) {
+                        Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     break;
-                case "editSelect": //TODO for selecting a user to edit
-                    break;
+                case "editSelect": {
+                    try {
+                        User user = service.getUser(email);
+                        request.setAttribute("editUser", user);
+                    } catch (Exception ex) {
+                        Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                break;
                 default:
 
-                    String email = request.getParameter("email");
                     String actives = request.getParameter("active");
                     Boolean active = Boolean.parseBoolean(request.getParameter("active"));
                     String firstName = request.getParameter("firstName");
                     String lastName = request.getParameter("lastName");
                     String password = request.getParameter("password");
                     int role = Integer.parseInt(request.getParameter("role"));//change role to string in the User class 
-                    if (validateFields(email, active, firstName, lastName, password)) {
 
+                    if (validateFields(email, active, firstName, lastName, password)) {
                         switch (action) {
                             case "Add": {
                                 try {
@@ -105,7 +119,7 @@ public class userServlet extends HttpServlet {
                                 }
                                 break;
                         }
-                    } else{
+                    } else {
                         //message about invalid fields potentially
                     }
                     break;

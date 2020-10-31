@@ -8,6 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/97e2ee3dbf.js" crossorigin="anonymous"></script>
         <title>User Database</title>
     </head>
     <body>
@@ -16,6 +17,7 @@
                 <h4>User Database</h4>
                 <table>
                     <tr class="columnLabels">
+                        <td>Delete</td>
                         <td>Edit</td>
                         <td>Email</td>
                         <td>Active</td>
@@ -26,13 +28,23 @@
                     </tr>
                     <c:forEach items="${userList}" var="item">
                         <tr>
-                            <td><input type ="radio" value ="${item}" name = "edit"></td><br>
-                        <td>${item.email}</td>
-                        <td>${item.active}</td>
-                        <td>${item.firstName}</td>
-                        <td>${item.lastName}</td>
-                        <td>${item.password}</td>
-                        <td>${item.role}</td>
+                        <form method="post" action="user">
+                            <td>
+                                <button class='iconButton' type="submit" name='action' value='delete'>
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            <td>
+                                <button class='iconButton' type="submit" name='action' value='editSelect'>
+                                    <i class="fas fa-user-edit"></i>
+                                </button>
+                            </td>
+                            <td><input type='text' name="email" value='${item.email}' readonly></td>
+                            <td>${item.active}</td>
+                            <td>${item.firstName}</td>
+                            <td>${item.lastName}</td>
+                            <td>${item.password}</td>
+                            <td>${item.role}</td>
+                        </form>
                         </tr>
                     </c:forEach>
                 </table>
@@ -68,6 +80,7 @@
 
                 <form method='post' action='user'>
                     <div class="inputs">
+                        <label>Email<input type='text' name='email' value='${editUser.email}' readonly></label>
                         <label>First Name<input type='text' name='firstName' value='${editUser.firstName}'></label>
                         <label>Last Name<input type='text' name='lastName' value='${editUser.lastName}'></label>
                         <label>Password<input type='password' name='password' value='${editUser.password}'></label>
