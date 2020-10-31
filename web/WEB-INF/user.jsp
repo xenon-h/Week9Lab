@@ -14,36 +14,40 @@
     <body>
         <div class="grid-container">
             <div id="ViewUser">
-                <h4>User Database</h4>
-                <table>
+                <h4>&nbsp;User Database</h4><br/>
+                <table class="userTable">
                     <tr class="columnLabels">
-                        <td>Delete</td>
-                        <td>Edit</td>
                         <td>Email</td>
                         <td>Active</td>
                         <td>First Name</td>
                         <td>Last Name</td>
                         <td>Password</td>
                         <td>Role</td>
+                        <td></td>
+                        <td></td>
+
+                        <!--<td>Delete</td>-->
+                        <!--<td>Edit</td>-->
                     </tr>
                     <c:forEach items="${userList}" var="item">
                         <tr>
                         <form method="post" action="user">
-                            <td>
-                                <button class='iconButton' type="submit" name='action' value='delete'>
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            <td>
-                                <button class='iconButton' type="submit" name='action' value='editSelect'>
-                                    <i class="fas fa-user-edit"></i>
-                                </button>
-                            </td>
-                            <td><input type='text' name="email" value='${item.email}' readonly></td>
+                            <!--<td><input type='text' name="email" value='${item.email}' readonly></td>-->
+                            <td>${item.email}</td>
                             <td>${item.active}</td>
                             <td>${item.firstName}</td>
                             <td>${item.lastName}</td>
                             <td>${item.password}</td>
                             <td>${item.role}</td>
+                            <td>
+                                <button class='iconButton deleteButton' type="submit" name='action' value='delete'>
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            <td>
+                                <button class='iconButton editButton' type="submit" name='action' value='editSelect'>
+                                    <i class="fas fa-user-edit"></i>
+                                </button>
+                            </td>
                         </form>
                         </tr>
                     </c:forEach>
