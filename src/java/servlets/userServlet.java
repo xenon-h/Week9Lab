@@ -64,39 +64,71 @@ public class userServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserService service = new UserService();
+
+        String action = request.getParameter("action");
+
+        if (action != null) {
+            switch (action) {
+                case "Delete":
+                    break;
+                case "editSelect":
+                    break;
+                default:
+
+                    String email = request.getParameter("email");
+                    Boolean active = Boolean.parseBoolean(request.getParameter("active"));
+                    String firstName = request.getParameter("firstname");
+                    String lastName = request.getParameter("lastname");
+                    String password = request.getParameter("password");
+                    int role = Integer.parseInt(request.getParameter("role"));//change role to string in the User class 
+                    if (validateFields(email, active, firstName, lastName, password)) {
+
+                    }
+                    switch (action) {
+                        case "Add": {
+                            try {
+                                service.addUser(email, active, firstName, lastName, password, role);
+                            } catch (Exception ex) {
+                                Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
+                                User user = new User(email, firstName, lastName, password, role, active);
+                                request.setAttribute("newUser", user);
+                            }
+                        }
+                        break;
+                        case "Edit":
+                            try {
+                                service.updateUser(email, active, firstName, lastName, password, role);
+                            } catch (Exception ex) {
+                                Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
+                                User user = new User(email, firstName, lastName, password, role, active);
+                                request.setAttribute("editUser", user);
+                            }
+                            break;
+                    }
+
+                    break;
+            }
+        }
+
         ArrayList<User> userList = new ArrayList();
         try {
             userList = service.getAllUsers();
-            System.out.println("test");
         } catch (Exception ex) {
             Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        String email = request.getParameter("email");
-        Boolean active = Boolean.parseBoolean(request.getParameter("active"));
-        String firstname = request.getParameter("firstname");;
-        String lastname = request.getParameter("lastname");
-        String password = request.getParameter("password");
-        int role = Integer.parseInt(request.getParameter("role"));//change role to string in the User class 
-
-        User editUser = new User(email, firstname, lastname, password, role, active);
-        userList.add(editUser);
-
         request.setAttribute("userList", userList);
-        request.setAttribute("editUser", editUser);
 
         getServletContext().getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
 
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    private boolean validateFields(String email, Boolean active, String firstName, String lastName, String password) {
+
+        if (email != null && !email.equals("") && firstName != null && !firstName.equals("") && password != null && !password.equals("")) {
+            return true;
+        }
+        return false;
+
+    }
 
 }

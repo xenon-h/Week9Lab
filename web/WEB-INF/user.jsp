@@ -43,18 +43,18 @@
 
                 <form method='post' action='user'>
                     <div class="inputs">
-                        <label>Email<input type='text' name='email' value='${editUser.firstName}'></label>
-                        <label>First Name<input type='text' name='firstName' value='${editUser.firstName}'></label>
-                        <label>Last Name<input type='text' name='lastName' value='${editUser.lastName}'></label>
-                        <label>Password<input type='password' name='password' value='${editUser.passWord}'></label>
+                        <label>Email<input type='text' name='email' value='${newUser.firstName}'></label>
+                        <label>First Name<input type='text' name='firstName' value='${newUser.firstName}'></label>
+                        <label>Last Name<input type='text' name='lastName' value='${newUser.lastName}'></label>
+                        <label>Password<input type='password' name='password' value='${newUser.password}'></label>
                         <label>Role
-                            <select name = "role" value = "${editUser.role}">
+                            <select name = "role" value = "${newUser.role}">
                                 <c:forEach items="${roles}" var = "role">
                                     <option value='${role.roleId}'>${role.roleName}</option>
                                 </c:forEach>
                             </select>
                     </div>
-                    <input class="submit" type='submit' name='submit' value='Add'>
+                    <input class="submit" type='submit' name='action' value='Add'>
 
                 </form>
             </div>
@@ -74,7 +74,7 @@
                                 </c:forEach>
                             </select>
                     </div>
-                    <input class="submit" type='submit' name='submit' value='Edit'>
+                    <input class="submit" type='submit' name='action' value='Edit'>
                 </form>
             </div>
         </div>

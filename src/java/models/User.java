@@ -30,7 +30,6 @@ public class User implements Serializable{
         
         
         
-        
     }
 
     public String getLastName() {
