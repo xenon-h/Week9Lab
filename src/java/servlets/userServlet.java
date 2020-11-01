@@ -49,7 +49,7 @@ public class userServlet extends HttpServlet {
             Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        getServletContext().getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
+       getServletContext().getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
     }
 
     /**
