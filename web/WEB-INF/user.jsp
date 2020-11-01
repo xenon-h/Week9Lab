@@ -32,7 +32,7 @@
                     <c:forEach items="${userList}" var="item">
                         <tr>
                         <form method="post" action="user">
-                            <!--<td><input type='text' name="email" value='${item.email}' readonly></td>-->
+                            <input type='text' name="email" value='${item.email}' hidden>
                             <td>${item.email}</td>
                             <td>${item.active}</td>
                             <td>${item.firstName}</td>
