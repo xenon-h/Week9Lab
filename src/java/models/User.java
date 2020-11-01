@@ -39,7 +39,7 @@ public class User implements Serializable{
         
         
         
-        Role role = db.get(roleInt-1);
+        Role role = db.get(roleInt);
         
         this.role = role;
         this.active = active;

@@ -45,7 +45,7 @@ public class UserDB {
                 String password = rs.getString(5);
                 int roleInt = rs.getInt(6); //I think this should be another query to retrieve the role name
                 
-                Role role = db.get(roleInt-1);
+                Role role = db.get(roleInt);
                 
                 
                 
@@ -89,7 +89,7 @@ public class UserDB {
                 
                 RoleDB db = new RoleDB();
                 ArrayList<Role> roleList = db.getAll();
-                Role role = db.get(roleInt-1);
+                Role role = db.get(roleInt);
 
                 user = new User(emailString, firstName, lastName, password, role, active);
                 
