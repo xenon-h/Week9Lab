@@ -14,30 +14,27 @@
     <body>
         <div class="grid-container">
             <div id="ViewUser">
-                <h4>&nbsp;User Database</h4><br/>
+                <h4>&nbsp;Users</h4><br/>
                 <table class="userTable">
                     <tr class="columnLabels">
                         <td>Email</td>
-                        <td>Active</td>
                         <td>First Name</td>
                         <td>Last Name</td>
                         <td>Password</td>
                         <td>Role</td>
-                        <td></td>
-                        <td></td>
-
-                        <!--<td>Delete</td>-->
-                        <!--<td>Edit</td>-->
+                        <td>Active</td>
+                        <td>Delete</td>
+                        <td>Edit</td>
                     </tr>
                     <c:forEach items="${userList}" var="item">
                         <tr>
                         <form method="post" action="user">
                             <td>${item.email}</td>
-                            <td>${item.active}</td>
                             <td>${item.firstName}</td>
                             <td>${item.lastName}</td>
                             <td>${item.password}</td>
                             <td>${item.role}</td>
+                            <td>${item.active}</td>
                             <td>
                                 <button class='iconButton deleteButton' type="submit" name='action' value='delete'>
                                     <i class="fas fa-trash-alt"></i>
@@ -63,8 +60,13 @@
                         <label>First Name:<input type='text' name='firstName' value='${newUser.firstName}'></label>
                         <label>Last Name:<input type='text' name='lastName' value='${newUser.lastName}'></label>
                         <label>Password:<input type='password' name='password' value='${newUser.password}'></label>
-                        <label>Active 
-                            <input type="checkbox"  name="active" value='true' checked>
+                        <label>Active:
+                            <div>
+                                <label class="switch">
+                                    <input type="checkbox" class='activeBoxes' name='active' value='${newUser.active}' checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
                         </label>
                         <label>Role:<br>
                             <select name = "roleID" value = "${newUser.role}">
@@ -87,8 +89,13 @@
                         <label>First Name:<input type='text' name='firstName' value='${editUser.firstName}'></label>
                         <label>Last Name:<input type='text' name='lastName' value='${editUser.lastName}'></label>
                         <label>Password:<input type='password' name='password' value='${editUser.password}'></label>
-                        <label>Active
-                            <input type="checkbox" name='active' value='${editUser.active}' checked>
+                        <label>Active:
+                            <div>
+                                <label class="switch">
+                                    <input type="checkbox" class='activeBoxes' name='active' value='${editUser.active}' checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
                         </label>
                         <label>Role:<br>
                             <select name = "roleID" value = "${editUser.role}">
