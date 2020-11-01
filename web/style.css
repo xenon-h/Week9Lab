@@ -79,9 +79,7 @@ body{
 }
 
 .grid-container{
-    margin-top: 5vh;
-    margin-left: 2vw;
-    margin-right: 2vw;
+    margin: 5vh;
     display: grid;
     grid-template-columns: auto 200px;
     grid-gap: 3vw;
@@ -189,6 +187,28 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
+/*icon styles*/
+
 .iconButton{
+    border: none;
     padding: 7px;
+    background-color: inherit;
 }
+
+.deleteButton{
+    color:rgb(245,55,22);
+}
+
+.editButton{
+    color:rgb(150,150,150);    
+}
+
+.userTable{
+    border-spacing: 5px 2em;
+}
+
+.userTable tr{
+    border-color: grey;
+    border-radius: 15px;
+}
+
