@@ -5,7 +5,6 @@
  */
 package servlets;
 
-import dataaccess.UserDB;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -90,8 +89,8 @@ public class userServlet extends HttpServlet {
                 break;
                 default:
 
-                    String actives = request.getParameter("active");
-                    Boolean active = Boolean.parseBoolean(request.getParameter("active"));
+                    String activeString = request.getParameter("active");
+                    Boolean active = Boolean.parseBoolean(activeString);
                     String firstName = request.getParameter("firstName");
                     String lastName = request.getParameter("lastName");
                     String password = request.getParameter("password");

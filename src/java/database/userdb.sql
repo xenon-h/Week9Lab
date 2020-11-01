@@ -49,3 +49,11 @@ INSERT INTO `user` (`email`,`active`,`first_name`,`last_name`,`password`,`role`)
 	VALUES ('KeepinItTeal@keepinitreal.ca', true, 'Shaun','Brazzoni', 'password', 2);
 INSERT INTO `user` (`email`,`active`,`first_name`,`last_name`,`password`,`role`)
 	VALUES ('RawMeatBaddie@keepinitreal.ca', true, 'Rameet','Bhatti', 'password', 2);
+INSERT INTO `user` (`email`,`active`,`first_name`,`last_name`,`password`,`role`)
+	VALUES ('cprg352+dave@gmail.com', true, 'Davey','Davidson', 'password', 1);
+INSERT INTO `user` (`email`,`active`,`first_name`,`last_name`,`password`,`role`)
+	VALUES ('cprg352+George2@gmail.com', true, 'Geo','rge', 'password', 3);
+INSERT INTO `user` (`email`,`active`,`first_name`,`last_name`,`password`,`role`)
+	VALUES ('cprg352+Kitty@gmail.com', true, 'Kitty','Wong', 'password', 2);
+INSERT INTO `user` (`email`,`active`,`first_name`,`last_name`,`password`,`role`)
+	VALUES ('cprg352+Tim@gmail.com', true, 'Tim','BuckTwo', 'password', 2);
