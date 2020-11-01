@@ -32,7 +32,6 @@
                     <c:forEach items="${userList}" var="item">
                         <tr>
                         <form method="post" action="user">
-                            <!--<td><input type='text' name="email" value='${item.email}' readonly></td>-->
                             <td>${item.email}</td>
                             <td>${item.active}</td>
                             <td>${item.firstName}</td>
@@ -48,6 +47,7 @@
                                     <i class="fas fa-user-edit"></i>
                                 </button>
                             </td>
+                            <input type='hidden' name="email" value='${item.email}' readonly>
                         </form>
                         </tr>
                     </c:forEach>
@@ -59,16 +59,15 @@
 
                 <form method='post' action='user'>
                     <div class="inputs">
-                        <label>Email<input type='text' name='email' value='${newUser.firstName}'></label>
-                        <label>First Name<input type='text' name='firstName' value='${newUser.firstName}'></label>
-                        <label>Last Name<input type='text' name='lastName' value='${newUser.lastName}'></label>
-                        <label>Password<input type='password' name='password' value='${newUser.password}'></label>
-                        <label class="switch">Active<br>
-                            <input type="checkbox" name="active" value='true' checked>
-                            <span class="slider round"></span>
+                        <label>Email:<input type='text' name='email' value='${newUser.firstName}'></label>
+                        <label>First Name:<input type='text' name='firstName' value='${newUser.firstName}'></label>
+                        <label>Last Name:<input type='text' name='lastName' value='${newUser.lastName}'></label>
+                        <label>Password:<input type='password' name='password' value='${newUser.password}'></label>
+                        <label>Active 
+                            <input type="checkbox"  name="active" value='true' checked>
                         </label>
-                        <label>Role<br>
-                            <select name = "role" value = "${newUser.role}">
+                        <label>Role:<br>
+                            <select name = "roleID" value = "${newUser.role}">
                                 <c:forEach items="${roles}" var = "role">
                                     <option value='${role.roleId}'>${role.roleName}</option>
                                 </c:forEach>
@@ -84,16 +83,15 @@
 
                 <form method='post' action='user'>
                     <div class="inputs">
-                        <label>Email<input type='text' name='email' value='${editUser.email}' readonly></label>
-                        <label>First Name<input type='text' name='firstName' value='${editUser.firstName}'></label>
-                        <label>Last Name<input type='text' name='lastName' value='${editUser.lastName}'></label>
-                        <label>Password<input type='password' name='password' value='${editUser.password}'></label>
-                        <label class="switch">Active<br>
+                        <label>Email:<input type='text' name='email' value='${editUser.email}' readonly></label>
+                        <label>First Name:<input type='text' name='firstName' value='${editUser.firstName}'></label>
+                        <label>Last Name:<input type='text' name='lastName' value='${editUser.lastName}'></label>
+                        <label>Password:<input type='password' name='password' value='${editUser.password}'></label>
+                        <label>Active
                             <input type="checkbox" name='active' value='${editUser.active}' checked>
-                            <span class="slider round"></span>
                         </label>
-                        <label>Role<br>
-                            <select name = "role" value = "${editUser.role}">
+                        <label>Role:<br>
+                            <select name = "roleID" value = "${editUser.role}">
                                 <c:forEach items="${roles}" var = "role">
                                     <option value='${role.roleId}'>${role.roleName}</option>
                                 </c:forEach>
