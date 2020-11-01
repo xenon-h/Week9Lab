@@ -33,8 +33,8 @@ public class RoleDB {
             while (rs.next()) {
                 int role_id = rs.getInt(1);
                 String role_name = rs.getString(2);
-                
-                Role role = new Role(role_id,role_name);
+
+                Role role = new Role(role_id, role_name);
                 roleList.add(role);
 
             }
@@ -47,7 +47,7 @@ public class RoleDB {
         return roleList;
 
     }
-    
+
     public Role get(int index) throws Exception {
         Role role = null;
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -61,14 +61,10 @@ public class RoleDB {
             ps.setInt(1, index);
             rs = ps.executeQuery();
 
-            
-                int role_id = rs.getInt(1);
-                String role_name = rs.getString(2);
-                
-                role = new Role(role_id,role_name);
-                
+            int role_id = rs.getInt(1);
+            String role_name = rs.getString(2);
 
-            
+            role = new Role(role_id, role_name);
 
         } finally {
             DBUtil.closeResultSet(rs);

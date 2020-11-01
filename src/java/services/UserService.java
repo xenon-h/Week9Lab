@@ -49,6 +49,13 @@ public class UserService {
 
     }
 
+    public void addUser(String email, Boolean active, String firstName, String lastName, String password, Role role) throws Exception {
+        UserDB userDB = new UserDB();
+        User newUser = new User(email, firstName, lastName, password, role, active);
+        userDB.insert(newUser);
+
+    }
+
     public ArrayList<Role> getAllRoles() throws Exception {
         RoleDB roleDB = new RoleDB();
         ArrayList<Role> resultSet = roleDB.getAll();

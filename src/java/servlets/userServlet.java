@@ -95,13 +95,15 @@ public class userServlet extends HttpServlet {
                     String firstName = request.getParameter("firstName");
                     String lastName = request.getParameter("lastName");
                     String password = request.getParameter("password");
-                    int role = Integer.parseInt(request.getParameter("role"));//change role to string in the User class 
+                    String roleName = request.getParameter("roleName");
+                    int roleID = Integer.parseInt(request.getParameter("roleID"));
+                    Role role = new Role(roleID, roleName);
 
                     if (validateFields(email, active, firstName, lastName, password)) {
                         switch (action) {
                             case "Add": {
                                 try {
-                                    service.addUser(email, active, firstName, lastName, password, role);
+                                    service.addUser(email, active, firstName, lastName, password, roleID);
                                 } catch (Exception ex) {
                                     Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
                                     User user = new User(email, firstName, lastName, password, role, active);
@@ -111,7 +113,7 @@ public class userServlet extends HttpServlet {
                             break;
                             case "Edit":
                                 try {
-                                    service.updateUser(email, active, firstName, lastName, password, role);
+                                    service.updateUser(email, active, firstName, lastName, password, roleID);
                                 } catch (Exception ex) {
                                     Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
                                     User user = new User(email, firstName, lastName, password, role, active);
