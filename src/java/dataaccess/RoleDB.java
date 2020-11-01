@@ -61,10 +61,15 @@ public class RoleDB {
             ps.setInt(1, index);
             rs = ps.executeQuery();
 
-            int role_id = rs.getInt(1);
-            String role_name = rs.getString(2);
+            while (rs.next()) {
+                
+            
+                int role_id = rs.getInt(1);
+                String role_name = rs.getString(2);
+                
+                role = new Role(role_id,role_name);
+            }
 
-            role = new Role(role_id, role_name);
 
         } finally {
             DBUtil.closeResultSet(rs);
