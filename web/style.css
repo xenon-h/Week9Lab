@@ -179,3 +179,25 @@ input:checked + .slider:before {
     box-shadow: 0 1px 2px 4px black;
     color: white;
 }
+.modalContainer {
+    width: 500px;
+    height: 400px;
+    background-color: rgba(0,0,0,0.10);
+    position: absolute;
+    top: 200px;
+    left: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modalEdit {
+    width: 500px;
+    height: 400px;
+}
+.BIG {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+    
+}
