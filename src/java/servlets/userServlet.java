@@ -48,8 +48,11 @@ public class userServlet extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        response.sendRedirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+        return;
 
-        getServletContext().getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
+//        getServletContext().getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
     }
 
     /**
