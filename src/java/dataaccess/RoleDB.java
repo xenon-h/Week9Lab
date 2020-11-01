@@ -70,7 +70,6 @@ public class RoleDB {
                 role = new Role(role_id,role_name);
             }
 
-
         } finally {
             DBUtil.closeResultSet(rs);
             DBUtil.closePreparedStatement(ps);

@@ -43,5 +43,9 @@ public class Role implements Serializable{
         this.roleId = roleId;
     }
     
+    @Override
+    public String toString(){
+        return roleName;
+    }
     
 }
