@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.persistence.EntityManager;
 import models.Role;
 import models.User;
 
@@ -20,14 +21,12 @@ public class RoleDB {
 
     public ArrayList<Role> getAll() throws Exception {
         ArrayList<Role> roleList = new ArrayList();
-        ConnectionPool cp = ConnectionPool.getInstance();
-        Connection con = cp.getConnection();
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
         PreparedStatement ps = null;
         ResultSet rs = null;
         String getAllStmt = "select * from role ORDER BY role_id";
 
         try {
-            ps = con.prepareStatement(getAllStmt);
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -42,7 +41,7 @@ public class RoleDB {
         } finally {
             DBUtil.closeResultSet(rs);
             DBUtil.closePreparedStatement(ps);
-            cp.freeConnection(con);
+            em.close();
         }
         return roleList;
 
