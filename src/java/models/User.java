@@ -5,11 +5,13 @@
  */
 package models;
 
-import dataaccess.RoleDB;
 import java.io.Serializable;
-import java.util.ArrayList;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -17,9 +19,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author User
+ * @author 832059
  */
-
 @Entity
 @Table(name = "user")
 @XmlRootElement
@@ -30,47 +31,44 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "User.findByFirstName", query = "SELECT u FROM User u WHERE u.firstName = :firstName")
     , @NamedQuery(name = "User.findByLastName", query = "SELECT u FROM User u WHERE u.lastName = :lastName")
     , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")})
-public class User implements Serializable{
-    
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
-    private String email = null;
-    private boolean active = false;
-    private String firstName = null, lastName = null;
-    private String password = null;
-    private Role role; //1 = system admin, regular user = 2, company admin = 3
-    
-    public User(String email, String firstName, String lastName, String password, Role role, boolean active) {//Constructor with role as object
-        
+    @Basic(optional = false)
+    @Column(name = "email")
+    private String email;
+    @Basic(optional = false)
+    @Column(name = "active")
+    private boolean active;
+    @Basic(optional = false)
+    @Column(name = "first_name")
+    private String firstName;
+    @Basic(optional = false)
+    @Column(name = "last_name")
+    private String lastName;
+    @Basic(optional = false)
+    @Column(name = "password")
+    private String password;
+    @JoinColumn(name = "role", referencedColumnName = "role_id")
+    @ManyToOne(optional = false)
+    private Role role;
+
+    public User() {
+    }
+
+    public User(String email) {
         this.email = email;
+    }
+
+    public User(String email, boolean active, String firstName, String lastName, String password) {
+        this.email = email;
+        this.active = active;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.role = role;
-        this.active = active;
-    }
-    public User(String email, String firstName, String lastName, String password, int roleInt, boolean active) throws Exception {//Constructor with role as integer
-        RoleDB db = new RoleDB();
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        
-        
-        
-        Role role = db.get(roleInt);
-        
-        this.role = role;
-        this.active = active;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-    
     public String getEmail() {
         return email;
     }
@@ -79,7 +77,7 @@ public class User implements Serializable{
         this.email = email;
     }
 
-    public boolean isActive() {
+    public boolean getActive() {
         return active;
     }
 
@@ -95,12 +93,12 @@ public class User implements Serializable{
         this.firstName = firstName;
     }
 
-    public String getLastname() {
+    public String getLastName() {
         return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastName = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassword() {
@@ -119,11 +117,29 @@ public class User implements Serializable{
         this.role = role;
     }
 
-    
-    
-    
-    
-    
-    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (email != null ? email.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof User)) {
+            return false;
+        }
+        User other = (User) object;
+        if ((this.email == null && other.email != null) || (this.email != null && !this.email.equals(other.email))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "models.User[ email=" + email + " ]";
+    }
     
 }
