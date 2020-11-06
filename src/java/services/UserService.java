@@ -9,8 +9,7 @@ import models.*;
 import dataaccess.UserDB;
 import dataaccess.RoleDB;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 
 /**
  *
@@ -18,9 +17,9 @@ import java.util.logging.Logger;
  */
 public class UserService {
 
-    public ArrayList<User> getAllUsers() throws Exception {
+    public List<User> getAllUsers() throws Exception {
         UserDB userDB = new UserDB();
-        ArrayList resultSet = userDB.getAll();
+        List<User> resultSet = userDB.getAll();
         return resultSet;
     }
 
@@ -56,9 +55,9 @@ public class UserService {
 
     }
 
-    public ArrayList<Role> getAllRoles() throws Exception {
+    public List<Role> getAllRoles() throws Exception {
         RoleDB roleDB = new RoleDB();
-        ArrayList<Role> resultSet = roleDB.getAll();
+        List<Role> resultSet = roleDB.getAll();
         return resultSet;
     }
 

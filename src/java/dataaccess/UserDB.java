@@ -70,38 +70,33 @@ public class UserDB {
 
     public void update(User user) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
         try {
-            ps = con.prepareStatement(updateStmt);
-            ps.setString(1, user.getEmail());
-            ps.setBoolean(2, user.isActive());
-            ps.setString(3, user.getFirstName());
-            ps.setString(4, user.getLastName());
-            ps.setString(5, user.getPassword());
-            ps.setInt(6, user.getRole().getRoleId());
-            ps.setString(7, user.getEmail());
-            ps.executeUpdate();
-
-        } finally {
-            DBUtil.closePreparedStatement(ps);
-            cp.freeConnection(con);
+            trans.begin();
+            em.merge(user);
+            trans.commit(); 
+        } catch(Exception e){
+            trans.rollback();
+        }
+            finally {
+            em.close();
         }
 
     }
 
     public void delete(User user) throws Exception {
-        ConnectionPool cp = ConnectionPool.getInstance();
-        Connection con = cp.getConnection();
-        PreparedStatement ps = null;
-
-        String deleteStmt = "DELETE FROM user WHERE email=?";
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
 
         try {
-            ps = con.prepareStatement(deleteStmt);
-            ps.setString(1, user.getEmail());
-            ps.executeUpdate();
-        } finally {
-            DBUtil.closePreparedStatement(ps);
-            cp.freeConnection(con);
+            trans.begin();
+            em.remove(em.merge(user));
+            trans.commit();
+        }catch(Exception e){
+            trans.rollback();
+        }
+        finally {
+            em.close();
         }
 
     }
