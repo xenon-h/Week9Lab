@@ -106,7 +106,8 @@ public class userServlet extends HttpServlet {
                                     service.addUser(email, active, firstName, lastName, password, roleID);
                                 } catch (Exception ex) {
                                     Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
-                                    User user = new User(email, firstName, lastName, password, role, active);
+                                    User user = new User(email, active, firstName, lastName, password);
+//                                    user.setRole(roleID);
                                     request.setAttribute("newUser", user);
                                 }
                             }
@@ -116,7 +117,8 @@ public class userServlet extends HttpServlet {
                                     service.updateUser(email, active, firstName, lastName, password, roleID);
                                 } catch (Exception ex) {
                                     Logger.getLogger(userServlet.class.getName()).log(Level.SEVERE, null, ex);
-                                    User user = new User(email, firstName, lastName, password, role, active);
+                                    User user = new User(email, active, firstName, lastName, password);
+//                                    user.setRole(roleID);
                                     request.setAttribute("editUser", user);
                                 }
                                 break;

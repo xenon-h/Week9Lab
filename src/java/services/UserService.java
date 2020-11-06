@@ -28,9 +28,18 @@ public class UserService {
         return userDB.get(email);
     }
 
-    public void updateUser(String email, Boolean active, String firstName, String lastName, String password, int role) throws Exception {
+    public void updateUser(String email, Boolean active, String firstName, String lastName, String password, int roleKey) throws Exception {
         UserDB userDB = new UserDB();
-        User currUser = new User(email, firstName, lastName, password, role, active);
+        User currUser = userDB.get(email);
+        currUser.setActive(active);
+        currUser.setFirstName(firstName);
+        currUser.setLastName(lastName);
+        currUser.setPassword(password);
+
+        RoleDB roleDB = new RoleDB();
+        Role role = roleDB.get(roleKey);
+
+        currUser.setRole(role);
         userDB.update(currUser);
     }
 
@@ -41,16 +50,24 @@ public class UserService {
         userDB.delete(user);
     }
 
-    public void addUser(String email, Boolean active, String firstName, String lastName, String password, int role) throws Exception {
-        UserDB userDB = new UserDB();
-        User newUser = new User(email, firstName, lastName, password, role, active);
-        userDB.insert(newUser);
+    public void addUser(String email, Boolean active, String firstName, String lastName, String password, int roleKey) throws Exception {
+        RoleDB roleDB = new RoleDB();
+        Role role = roleDB.get(roleKey);
 
+        User newUser = new User(email, active, firstName, lastName, password);
+        newUser.setRole(role);
+
+        UserDB userDB = new UserDB();
+        userDB.insert(newUser);
     }
 
     public void addUser(String email, Boolean active, String firstName, String lastName, String password, Role role) throws Exception {
+         RoleDB roleDB = new RoleDB();
+
+        User newUser = new User(email, active, firstName, lastName, password);
+        newUser.setRole(role);
+
         UserDB userDB = new UserDB();
-        User newUser = new User(email, firstName, lastName, password, role, active);
         userDB.insert(newUser);
 
     }
