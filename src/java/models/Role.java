@@ -94,7 +94,12 @@ public class Role implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Role[ roleId=" + roleId + " ]";
+        
+        //I think this is needed. The app seems to correct itself without it, but a null pointer exception can be displayed temporarily. This might be related to the fetching style.
+        if (roleName != null && !roleName.equals("")) {
+            return roleName;
+        }
+        return "loading...";
     }
 
     @XmlTransient
@@ -105,5 +110,5 @@ public class Role implements Serializable {
     public void setUserCollection(Collection<User> userCollection) {
         this.userCollection = userCollection;
     }
-    
+
 }
