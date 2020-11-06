@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
 import models.Role;
 import models.User;
 
@@ -20,46 +22,17 @@ public class UserDB {
 
     String getAllStmt = "SELECT * from user";
 
-    public ArrayList<User> getAll() throws Exception {
+    public List<User> getAll() throws Exception {//returns all users
         
-        RoleDB db = new RoleDB();
-        ArrayList<Role> roleList = db.getAll();
-        
-        ArrayList<User> userList = new ArrayList();
-        ConnectionPool cp = ConnectionPool.getInstance();
-        Connection con = cp.getConnection();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            ps = con.prepareStatement(getAllStmt);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-
-                //email,active,firstname, lastname,password, role
-                String email = rs.getString(1);
-                Boolean active = rs.getBoolean(2);
-                String firstName = rs.getString(3);
-                String lastName = rs.getString(4);
-                String password = rs.getString(5);
-                int roleInt = rs.getInt(6); //I think this should be another query to retrieve the role name
-                
-                Role role = db.get(roleInt);
-                
-                
-                
-                User user = new User(email, firstName, lastName, password, role, active);
-                userList.add(user);
+            return em.createNamedQuery("User.findAll",User.class).getResultList();
 
             }
 
-        } finally {
-            DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(ps);
-            cp.freeConnection(con);
+        finally {
+            em.close();
         }
-        return userList;
 
     }
 
