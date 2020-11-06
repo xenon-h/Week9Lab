@@ -6,25 +6,55 @@
 package models;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Jordan
+ * @author 832059
  */
-public class Role implements Serializable{
-    public String roleName = null;
-    public int roleId = 0;
-    //1 = system admin, regular user = 2, company admin = 3
-    
-    public Role(int roleId, String roleName) {
-        
+@Entity
+@Table(name = "role")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r")
+    , @NamedQuery(name = "Role.findByRoleId", query = "SELECT r FROM Role r WHERE r.roleId = :roleId")
+    , @NamedQuery(name = "Role.findByRoleName", query = "SELECT r FROM Role r WHERE r.roleName = :roleName")})
+public class Role implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @Column(name = "role_id")
+    private Integer roleId;
+    @Basic(optional = false)
+    @Column(name = "role_name")
+    private String roleName;
+
+    public Role() {
+    }
+
+    public Role(Integer roleId) {
+        this.roleId = roleId;
+    }
+
+    public Role(Integer roleId, String roleName) {
         this.roleId = roleId;
         this.roleName = roleName;
-
     }
-    
-    public Role(){
-        
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
     public String getRoleName() {
@@ -35,17 +65,29 @@ public class Role implements Serializable{
         this.roleName = roleName;
     }
 
-    public int getRoleId() {
-        return roleId;
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (roleId != null ? roleId.hashCode() : 0);
+        return hash;
     }
 
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
-    }
-    
     @Override
-    public String toString(){
-        return roleName;
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Role)) {
+            return false;
+        }
+        Role other = (Role) object;
+        if ((this.roleId == null && other.roleId != null) || (this.roleId != null && !this.roleId.equals(other.roleId))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "models.Role[ roleId=" + roleId + " ]";
     }
     
 }
