@@ -7,6 +7,7 @@ package servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -36,8 +37,8 @@ public class userServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserService service = new UserService();
-        ArrayList<User> userList;
-        ArrayList<Role> roles;
+        List<User> userList;
+        List<Role> roles;
 
         try {
             userList = service.getAllUsers();
@@ -128,8 +129,8 @@ public class userServlet extends HttpServlet {
             }
         }
 
-        ArrayList<User> userList = new ArrayList();
-        ArrayList<Role> roles;
+        List<User> userList;
+        List<Role> roles;
 
         try {
             userList = service.getAllUsers();
